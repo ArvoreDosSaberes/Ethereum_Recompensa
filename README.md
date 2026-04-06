@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=ArvoreDosSaberes.Capacitacao_Web3_SmartContracts_Elemental)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 ![Language: Portuguese](https://img.shields.io/badge/Language-Portuguese-brightgreen.svg)
@@ -154,4 +155,3 @@ npx hardhat test
 **Atualizado por:** Sistema de Documentação
 **Histórico de Alterações:**
 - 2025-04-06 - Criado por Sistema de Documentação - Extração e reformatagem do PDF original - Versão 1.0
-# Ethereum_Recompensa
