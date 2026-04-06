@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Correções - DApp Registro de Usuários</title>
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+    <script src="js/logger.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        input { padding: 8px; margin: 5px; width: 300px; }
+        .hidden { display: none; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Teste de Correções da DApp</h1>
+    
+    <div id="status-container"></div>
+    
+    <div>
+        <h2>1. Teste de Conexão</h2>
+        <button id="test-connection">🔗 Testar Conexão MetaMask</button>
+        <div id="connection-result" class="hidden"></div>
+    </div>
+    
+    <div>
+        <h2>2. Teste de Endereço do Contrato</h2>
+        <button id="test-contract-address">📍 Verificar Endereço do Contrato</button>
+        <div id="contract-address-result" class="hidden"></div>
+    </div>
+    
+    <div>
+        <h2>3. Teste de Inicialização do Contrato</h2>
+        <button id="test-contract-init">🔧 Testar Inicialização do Contrato</button>
+        <div id="contract-init-result" class="hidden"></div>
+    </div>
+    
+    <div>
+        <h2>4. Teste de Registro de Usuário</h2>
+        <input type="text" id="test-name" placeholder="Nome para teste" value="Carlos Teste">
+        <button id="test-register">👤 Testar Registro</button>
+        <div id="register-result" class="hidden"></div>
+    </div>
+    
+    <div>
+        <h2>5. Logs da Aplicação</h2>
+        <button id="toggle-logs">📋 Mostrar/Ocultar Logs</button>
+        <div id="logs-container" class="hidden">
+            <pre id="logs-content"></pre>
+        </div>
+    </div>
+
+    <script src="js/contract.js"></script>
+    <script src="js/app.js"></script>
+    
+    <script>
+        // Função auxiliar para exibir resultados
+        function showResult(containerId, type, message, details = null) {
+            const container = document.getElementById(containerId);
+            container.classList.remove('hidden', 'success', 'error', 'warning', 'info');
+            container.classList.add('status', type);
+            
+            let html = `<strong>${message}</strong>`;
+            if (details) {
+                html += `<pre>${JSON.stringify(details, null, 2)}</pre>`;
+            }
+            container.innerHTML = html;
+        }
+        
+        // Teste 1: Conexão MetaMask
+        document.getElementById('test-connection').addEventListener('click', async () => {
+            try {
+                if (typeof window.ethereum === 'undefined') {
+                    showResult('connection-result', 'error', 'MetaMask não encontrado');
+                    return;
+                }
+                
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                const network = await window.ethereum.request({ method: 'eth_chainId' });
+                
+                showResult('connection-result', 'success', 'MetaMask conectado com sucesso!', {
+                    accounts: accounts,
+                    network: network,
+                    address: accounts[0]
+                });
+                
+            } catch (error) {
+                showResult('connection-result', 'error', 'Erro na conexão', { error: error.message });
+            }
+        });
+        
+        // Teste 2: Endereço do Contrato
+        document.getElementById('test-contract-address').addEventListener('click', () => {
+            const dapp = new DApp();
+            dapp.loadContractAddress();
+            
+            if (dapp.contractAddress) {
+                showResult('contract-address-result', 'success', 'Endereço do contrato carregado', {
+                    address: dapp.contractAddress,
+                    source: localStorage.getItem('contractAddress') ? 'localStorage' : 'padrão'
+                });
+            } else {
+                showResult('contract-address-result', 'error', 'Endereço do contrato não encontrado');
+            }
+        });
+        
+        // Teste 3: Inicialização do Contrato
+        document.getElementById('test-contract-init').addEventListener('click', async () => {
+            try {
+                const dapp = new DApp();
+                await dapp.connectWallet();
+                
+                if (contractManager.contract) {
+                    showResult('contract-init-result', 'success', 'Contrato inicializado com sucesso!', {
+                        address: contractManager.contractAddress,
+                        owner: contractManager.isOwner
+                    });
+                } else {
+                    showResult('contract-init-result', 'error', 'Contrato não foi inicializado');
+                }
+            } catch (error) {
+                showResult('contract-init-result', 'error', 'Erro na inicialização', { error: error.message });
+            }
+        });
+        
+        // Teste 4: Registro de Usuário
+        document.getElementById('test-register').addEventListener('click', async () => {
+            try {
+                const name = document.getElementById('test-name').value.trim();
+                if (!name) {
+                    showResult('register-result', 'error', 'Por favor, informe um nome');
+                    return;
+                }
+                
+                const dapp = new DApp();
+                await dapp.connectWallet();
+                
+                if (!contractManager.contract) {
+                    showResult('register-result', 'error', 'Contrato não inicializado');
+                    return;
+                }
+                
+                showResult('register-result', 'info', 'Enviando transação...');
+                
+                const receipt = await contractManager.registrarUsuario(name);
+                
+                showResult('register-result', 'success', 'Usuário registrado com sucesso!', {
+                    transactionHash: receipt.transactionHash,
+                    blockNumber: receipt.blockNumber
+                });
+                
+            } catch (error) {
+                showResult('register-result', 'error', 'Erro no registro', { error: error.message });
+            }
+        });
+        
+        // Toggle Logs
+        document.getElementById('toggle-logs').addEventListener('click', () => {
+            const logsContainer = document.getElementById('logs-container');
+            const logsContent = document.getElementById('logs-content');
+            
+            if (logsContainer.classList.contains('hidden')) {
+                // Carregar logs do localStorage
+                const logs = logger.getLogs();
+                logsContent.textContent = logs.join('\n');
+                logsContainer.classList.remove('hidden');
+            } else {
+                logsContainer.classList.add('hidden');
+            }
+        });
+        
+        // Inicializar logger
+        if (typeof logger !== 'undefined') {
+            logger.info('TEST', 'initialize', 1, '🧪 Página de teste carregada');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuários com Recompensa - DApp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-coins text-indigo-600 text-2xl"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">Registro de Usuários com Recompensa</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Network Selector -->
+                    <div id="network-selector" class="hidden network-selector">
+                        <select id="network-select" class="network-select">
+                            <option value="localhost">Hardhat Local</option>
+                            <option value="sepolia">Sepolia Testnet</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Wallet Connection -->
+                    <div id="wallet-info" class="flex items-center space-x-4">
+                        <button id="connect-wallet" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                            <i class="fas fa-wallet mr-2"></i>Conectar Carteira
+                        </button>
+                        <div id="connected-info" class="hidden">
+                            <div class="flex items-center space-x-3">
+                                <div class="wallet-info-card">
+                                    <div id="wallet-balance" class="wallet-balance">0.000 ETH</div>
+                                    <div id="wallet-address" class="wallet-address"></div>
+                                </div>
+                                <button id="disconnect-wallet" class="text-red-500 hover:text-red-700 transition-colors">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Status Messages -->
+        <div id="status-container" class="mb-6"></div>
+
+        <!-- Contract Info -->
+        <section id="contract-info" class="bg-white rounded-lg shadow-md p-6 mb-8 hidden">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">
+                <i class="fas fa-info-circle text-blue-500 mr-2"></i>Informações do Contrato
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-gray-50 p-4 rounded">
+                    <p class="text-sm text-gray-500">Endereço do Contrato</p>
+                    <p id="contract-address" class="font-mono text-sm break-all"></p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded">
+                    <p class="text-sm text-gray-500">Total de Usuários</p>
+                    <p id="total-users" class="text-2xl font-bold text-indigo-600">0</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded">
+                    <p class="text-sm text-gray-500">Valor da Recompensa</p>
+                    <p id="reward-value" class="text-2xl font-bold text-green-600">100</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab Navigation -->
+        <div class="bg-white rounded-lg shadow-md mb-8">
+            <div class="border-b">
+                <nav class="flex space-x-8 px-6" aria-label="Tabs">
+                    <button class="tab-button py-4 px-1 border-b-2 font-medium text-sm border-indigo-500 text-indigo-600" data-tab="register">
+                        <i class="fas fa-user-plus mr-2"></i>Registrar Usuário
+                    </button>
+                    <button class="tab-button py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="consult">
+                        <i class="fas fa-search mr-2"></i>Consultar Usuário
+                    </button>
+                    <button class="tab-button py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="rewards">
+                        <i class="fas fa-gift mr-2"></i>Distribuir Recompensas
+                    </button>
+                    <button class="tab-button py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="logs">
+                        <i class="fas fa-list-alt mr-2"></i>Logs
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="p-6">
+                <!-- Register Tab -->
+                <div id="register-tab" class="tab-content">
+                    <h3 class="text-lg font-semibold mb-4">Registrar Novo Usuário</h3>
+                    <form id="register-form" class="space-y-4">
+                        <div>
+                            <label for="user-name" class="block text-sm font-medium text-gray-700 mb-1">
+                                Nome do Usuário
+                            </label>
+                            <input type="text" id="user-name" name="name" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                placeholder="Digite seu nome completo">
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors">
+                            <i class="fas fa-user-plus mr-2"></i>Registrar no Sistema
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Consult Tab -->
+                <div id="consult-tab" class="tab-content hidden">
+                    <h3 class="text-lg font-semibold mb-4">Consultar Informações do Usuário</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="consult-address" class="block text-sm font-medium text-gray-700 mb-1">
+                                Endereço da Carteira
+                            </label>
+                            <div class="flex space-x-2">
+                                <input type="text" id="consult-address" 
+                                    class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                    placeholder="0x...">
+                                <button id="use-my-address" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-colors">
+                                    <i class="fas fa-user mr-2"></i>Meu Endereço
+                                </button>
+                            </div>
+                        </div>
+                        <button id="consult-user" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-search mr-2"></i>Consultar
+                        </button>
+                        <div id="user-info" class="hidden bg-gray-50 p-4 rounded-md">
+                            <!-- User info will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rewards Tab -->
+                <div id="rewards-tab" class="tab-content hidden">
+                    <h3 class="text-lg font-semibold mb-4">Distribuir Recompensas</h3>
+                    <div id="owner-warning" class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4 hidden">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-yellow-700">
+                                    Apenas o owner do contrato pode distribuir recompensas. Verifique se você está conectado com a carteira do owner.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="reward-address" class="block text-sm font-medium text-gray-700 mb-1">
+                                Endereço do Usuário a ser Recompensado
+                            </label>
+                            <input type="text" id="reward-address" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                placeholder="0x...">
+                        </div>
+                        <button id="distribute-reward" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors">
+                            <i class="fas fa-gift mr-2"></i>Distribuir Recompensa (100 tokens)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Logs Tab -->
+                <div id="logs-tab" class="tab-content hidden">
+                    <h3 class="text-lg font-semibold mb-4">Logs da Aplicação</h3>
+                    <div class="space-y-2">
+                        <button id="clear-logs" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors text-sm">
+                            <i class="fas fa-trash mr-2"></i>Limpar Logs
+                        </button>
+                        <div id="logs-container" class="bg-gray-900 text-green-400 p-4 rounded-md h-96 overflow-y-auto font-mono text-sm">
+                            <!-- Logs will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 - Projeto Capacitação Web3 - Árvore dos Saberes</p>
+            <p class="text-sm text-gray-400 mt-2">Smart Contract de Registro de Usuários com Recompensa</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Contract address will be injected here -->
+    <!-- Carregar Ethers.js primeiro -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    
+    <!-- Script de verificação e inicialização -->
+    <script>
+        // Aguardar o ethers carregar completamente
+        function waitForEthers() {
+            return new Promise((resolve, reject) => {
+                if (typeof window.ethers !== 'undefined') {
+                    console.log('✅ Ethers.js carregado com sucesso');
+                    resolve();
+                } else {
+                    let attempts = 0;
+                    const maxAttempts = 50;
+                    const checkInterval = setInterval(() => {
+                        attempts++;
+                        if (typeof window.ethers !== 'undefined') {
+                            console.log('✅ Ethers.js carregado com sucesso');
+                            clearInterval(checkInterval);
+                            resolve();
+                        } else if (attempts >= maxAttempts) {
+                            clearInterval(checkInterval);
+                            console.error('❌ Timeout ao carregar Ethers.js');
+                            reject(new Error('Ethers.js não foi carregado'));
+                        }
+                    }, 100);
+                }
+            });
+        }
+        
+        // Inicializar aplicação quando ethers estiver pronto
+        window.addEventListener('load', async () => {
+            try {
+                await waitForEthers();
+                
+                // Carregar os scripts da aplicação
+                const scripts = [
+                    './js/logger.js',
+                    './js/contract.js', 
+                    './js/app.js'
+                ];
+                
+                for (const src of scripts) {
+                    await loadScript(src);
+                }
+                
+                // Criar instância da DApp após carregar todos os scripts
+                window.dapp = new DApp();
+                
+                console.log('✅ Todos os scripts carregados com sucesso');
+            } catch (error) {
+                console.error('❌ Erro ao carregar scripts:', error);
+                document.body.innerHTML += `
+                    <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                                background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                                text-align: center; max-width: 400px;">
+                        <h3 style="color: #e53e3e; margin-bottom: 10px;">❌ Erro de Carregamento</h3>
+                        <p>Não foi possível carregar a biblioteca Ethers.js. Por favor, recarregue a página.</p>
+                        <button onclick="window.location.reload()" 
+                                style="background: #3182ce; color: white; border: none; padding: 10px 20px; 
+                                       border-radius: 5px; cursor: pointer; margin-top: 10px;">
+                            Recarregar Página
+                        </button>
+                    </div>
+                `;
+            }
+        });
+        
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = () => reject(new Error(`Failed to load ${src}`));
+                document.head.appendChild(script);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar DApp - Registro de Usuários com Recompensa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .button {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .warning {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .step {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .step h3 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+        .code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 DApp - Registro de Usuários com Recompensa</h1>
+        
+        <div class="warning">
+            <strong>⚠️ Importante:</strong> Antes de iniciar, certifique-se de que o contrato foi compilado e implantado na rede local.
+        </div>
+
+        <div class="step">
+            <h3>📋 Passo 1: Verificar Pré-requisitos</h3>
+            <ul>
+                <li>MetaMask instalado no navegador</li>
+                <li>Hardhat node rodando (http://127.0.0.1:8545)</li>
+                <li>Contrato implantado na rede local</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>⚙️ Passo 2: Configurar MetaMask</h3>
+            <p>Adicione a rede local no MetaMask:</p>
+            <div class="code">
+                Network Name: Hardhat Local<br>
+                RPC URL: http://127.0.0.1:8545<br>
+                Chain ID: 1337<br>
+                Currency Symbol: ETH
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>📍 Passo 3: Configurar Endereço do Contrato</h3>
+            <p>Após fazer o deploy, configure o endereço:</p>
+            <div class="code">
+                localStorage.setItem('contractAddress', '0x...');
+            </div>
+            <p>Substitua '0x...' pelo endereço real do contrato.</p>
+        </div>
+
+        <div class="step">
+            <h3>🎯 Passo 4: Iniciar a Aplicação</h3>
+            <p>Escolha uma das opções abaixo para abrir a DApp:</p>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="index.html" class="button">🌐 Abrir DApp</a>
+            </div>
+            
+            <p><strong>Ou</strong> use um servidor local:</p>
+            <div class="code">
+                # Opção 1: Python<br>
+                python -m http.server 3000<br><br>
+                # Opção 2: PHP<br>
+                php -S localhost:3000
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>📚 Documentação</h3>
+            <p>Para mais informações, consulte o <a href="README.md" style="color: #4CAF50;">README.md</a>.</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <p><strong>Projeto Capacitação Web3 - Árvore dos Saberes</strong></p>
+            <p>Interface Web Autônoma para Smart Contracts</p>
+        </div>
+    </div>
+
+    <script>
+        // Verificar se o usuário está em um servidor local ou arquivo direto
+        if (window.location.protocol === 'file:') {
+            document.querySelector('.warning').innerHTML += 
+                '<br><br><strong>⚠️ Aviso:</strong> Você está abrindo o arquivo diretamente. ' +
+                'Isso pode causar problemas com o MetaMask. ' +
+                'Recomendamos usar um servidor local (Python/PHP).';
+        }
+        
+        // Função para detectar se o Hardhat node está rodando
+        async function checkHardhatNode() {
+            try {
+                const response = await fetch('http://127.0.0.1:8545', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        jsonrpc: '2.0',
+                        method: 'eth_blockNumber',
+                        params: [],
+                        id: 1
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('✅ Hardhat node está rodando. Block:', data.result);
+                    return true;
+                }
+            } catch (error) {
+                console.log('❌ Hardhat node não está rodando');
+                return false;
+            }
+        }
+        
+        // Verificar status ao carregar
+        window.addEventListener('load', async () => {
+            const isRunning = await checkHardhatNode();
+            if (!isRunning) {
+                const warning = document.querySelector('.warning');
+                warning.innerHTML += 
+                    '<br><br><strong>❌ Hardhat node não detectado!</strong> ' +
+                    'Execute <code>npm run node</code> na raiz do projeto.';
+            }
+        });
+    </script>
+</body>
+</html>

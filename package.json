@@ -1,0 +1,28 @@
+{
+  "name": "registro-usuarios-recompensa",
+  "version": "1.0.0",
+  "description": "Smart Contract de Registro de Usuários com Recompensa em tokens simulados",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:local": "hardhat run src/scripts/deploy.js --network localhost",
+    "deploy:sepolia": "hardhat run src/scripts/deploy.js --network sepolia",
+    "node": "hardhat node"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.22.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0",
+    "dotenv": "^17.4.1"
+  },
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "smart-contract",
+    "hardhat",
+    "web3"
+  ],
+  "license": "MIT"
+}
