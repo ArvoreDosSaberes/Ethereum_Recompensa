@@ -429,11 +429,11 @@ class DApp {
                 logger.warning('DAPP', 'loadContractAddress', 1, '⚠️ Usando endereço de contrato para Hardhat Local', { address: this.contractAddress });
             } else if (this.currentNetwork && this.currentNetwork.chainId === '0xaa36a7') {
                 // Sepolia Testnet
-                this.contractAddress = '0xcEF96AEee7322F10e3024cbCb7b3b9388d965392';
+                this.contractAddress = '0xCF2aB63a9bA9F7B96cd949f1fB69518ea9aBBD6a';
                 logger.warning('DAPP', 'loadContractAddress', 1, '⚠️ Usando endereço de contrato para Sepolia', { address: this.contractAddress });
             } else {
                 // Para outras redes ou quando não há rede definida, usar Sepolia como padrão
-                this.contractAddress = '0xcEF96AEee7322F10e3024cbCb7b3b9388d965392';
+                this.contractAddress = '0xCF2aB63a9bA9F7B96cd949f1fB69518ea9aBBD6a';
                 logger.warning('DAPP', 'loadContractAddress', 1, '⚠️ Usando endereço de contrato padrão (Sepolia)', { address: this.contractAddress });
             }
         } else {

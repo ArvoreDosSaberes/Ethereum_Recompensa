@@ -258,10 +258,10 @@ event RecompensaEnviada(address indexed carteira, uint256 quantidade, uint256 da
 
 ---
 **Resumo:** Documento completo de requisitos para o desenvolvimento do Smart Contract de Registro e Recompensa, com especificações funcionais, técnicas e critérios de aceite.
-**Data de Criação:** 2025-04-06
+**Data de Criação:** 2026-04-06
 **Autor:** Sistema de Documentação
 **Versão:** 1.0
-**Última Atualização:** 2025-04-06
+**Última Atualização:** 2026-04-06
 **Atualizado por:** Sistema de Documentação
 **Histórico de Alterações:**
-- 2025-04-06 - Criado por Sistema de Documentação - Versão inicial completa - Versão 1.0
+- 2026-04-06 - Criado por Sistema de Documentação - Versão inicial completa - Versão 1.0

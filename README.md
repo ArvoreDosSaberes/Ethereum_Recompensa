@@ -148,10 +148,10 @@ npx hardhat test
 
 ---
 **Resumo:** Projeto de Smart Contract básico para registro de usuários com sistema de recompensas em tokens simulados, desenvolvido como atividade final do módulo de Solidity.
-**Data de Criação:** 2025-04-06
+**Data de Criação:** 2026-04-06
 **Autor:** Bruno (Professor) / Projeto Adaptado
 **Versão:** 1.0
-**Última Atualização:** 2025-04-06
+**Última Atualização:** 2026-04-06
 **Atualizado por:** Sistema de Documentação
 **Histórico de Alterações:**
-- 2025-04-06 - Criado por Sistema de Documentação - Extração e reformatagem do PDF original - Versão 1.0
+- 2026-04-06 - Criado por Sistema de Documentação - Extração e reformatagem do PDF original - Versão 1.0

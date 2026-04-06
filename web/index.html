@@ -185,10 +185,122 @@
         </div>
     </main>
 
+    <!-- Technologies Section -->
+    <section class="bg-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Tecnologias Utilizadas</h2>
+                <p class="text-gray-600">Este projeto foi desenvolvido com as seguintes tecnologias e ferramentas</p>
+            </div>
+            
+            <!-- Carousel Container -->
+            <div class="relative">
+                <!-- Carousel Track -->
+                <div class="overflow-hidden">
+                    <div id="logo-carousel" class="flex transition-transform duration-500 ease-in-out">
+                        <!-- Slide 1 -->
+                        <div class="min-w-full flex justify-center items-center space-x-8 py-8">
+                            <div class="tech-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Ethereum-icon-purple.svg" 
+                                     alt="Ethereum" class="h-24 w-auto object-contain"
+                                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/596/596825.png'">
+                                <p class="text-sm text-gray-600 mt-2">Ethereum</p>
+                            </div>
+                            <div class="tech-logo">
+                                <img src="https://remix.ethereum.org/assets/img/remix_logo.png" 
+                                     alt="Remix IDE" class="h-24 w-auto object-contain"
+                                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/907/907335.png'">
+                                <p class="text-sm text-gray-600 mt-2">Remix</p>
+                            </div>
+                            <div class="tech-logo">
+                                <img src="https://etherscan.io/images/brandassets/etherscan-logo-circle.svg" 
+                                     alt="Etherscan" class="h-24 w-auto object-contain"
+                                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/732/732215.png'">
+                                <p class="text-sm text-gray-600 mt-2">Etherscan</p>
+                            </div>
+                            <div class="tech-logo">
+                                <img src="https://sepolia.etherscan.io/images/svg/brands/ethereum-original.svg" 
+                                     alt="Sepolia" class="h-24 w-auto object-contain"
+                                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/596/596825.png'">
+                                <p class="text-sm text-gray-600 mt-2">Sepolia</p>
+                            </div>
+                            <div class="tech-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Solidity_logo.svg" 
+                                     alt="Solidity" class="h-24 w-auto object-contain"
+                                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/613/613407.png'">
+                                <p class="text-sm text-gray-600 mt-2">Solidity</p>
+                            </div>
+                            <div class="tech-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" 
+                                     alt="MetaMask" class="h-24 w-auto object-contain"
+                                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/877/877829.png'">
+                                <p class="text-sm text-gray-600 mt-2">MetaMask</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="min-w-full flex justify-center items-center space-x-8 py-8">
+                            <div class="tech-logo">
+                                <img src="https://code.visualstudio.com/assets/images/code-stable.png" 
+                                     alt="VS Code" class="h-24 w-auto object-contain"
+                                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/906/906329.png'">
+                                <p class="text-sm text-gray-600 mt-2">VS Code</p>
+                            </div>
+                            <div class="tech-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" 
+                                     alt="Linux" class="h-24 w-auto object-contain"
+                                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/596/596833.png'">
+                                <p class="text-sm text-gray-600 mt-2">Linux</p>
+                            </div>
+                            <div class="tech-logo">
+                                <img src="https://windsurf.io/images/logo.svg" 
+                                     alt="Windsurf" class="h-24 w-auto object-contain"
+                                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/907/907335.png'">
+                                <p class="text-sm text-gray-600 mt-2">Windsurf</p>
+                            </div>
+                            <div class="tech-logo">
+                                <div class="h-24 w-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                                    <span class="text-white font-bold text-lg">RT</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">Rapport Tecnologia</p>
+                            </div>
+                            <div class="tech-logo">
+                                <div class="h-24 w-24 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">ÁS</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">Árvore dos Saberes</p>
+                            </div>
+                            <div class="tech-logo">
+                                <img src="https://nodejs.org/static/images/logo.svg" 
+                                     alt="Node.js" class="h-24 w-auto object-contain"
+                                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/596/596832.png'">
+                                <p class="text-sm text-gray-600 mt-2">Node.js</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <button id="prev-slide" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all">
+                    <i class="fas fa-chevron-left text-gray-800"></i>
+                </button>
+                <button id="next-slide" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all">
+                    <i class="fas fa-chevron-right text-gray-800"></i>
+                </button>
+                
+                <!-- Indicators -->
+                <div class="flex justify-center mt-6 space-x-2">
+                    <button class="carousel-dot w-3 h-3 bg-indigo-600 rounded-full transition-all" data-slide="0"></button>
+                    <button class="carousel-dot w-3 h-3 bg-gray-300 rounded-full transition-all" data-slide="1"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-6 mt-12">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 - Projeto Capacitação Web3 - Árvore dos Saberes</p>
+            <p>&copy; 2026 - Projeto Capacitação Web3 - Árvore dos Saberes</p>
             <p class="text-sm text-gray-400 mt-2">Smart Contract de Registro de Usuários com Recompensa</p>
         </div>
     </footer>
@@ -229,6 +341,9 @@
         window.addEventListener('load', async () => {
             try {
                 await waitForEthers();
+                
+                // Definir endereço do contrato (poderia ser carregado de um arquivo de configuração)
+                window.CONTRACT_ADDRESS = '0xCF2aB63a9bA9F7B96cd949f1fB69518ea9aBBD6a';
                 
                 // Carregar os scripts da aplicação
                 const scripts = [
@@ -272,6 +387,208 @@
                 document.head.appendChild(script);
             });
         }
+    </script>
+    
+    <!-- Carousel Script -->
+    <script>
+        // Carrossel de Tecnologias
+        class TechCarousel {
+            constructor() {
+                this.currentSlide = 0;
+                this.totalSlides = 2;
+                this.carousel = document.getElementById('logo-carousel');
+                this.prevBtn = document.getElementById('prev-slide');
+                this.nextBtn = document.getElementById('next-slide');
+                this.dots = document.querySelectorAll('.carousel-dot');
+                this.autoPlayInterval = null;
+                this.autoPlayDelay = 5000; // 5 segundos
+                
+                this.init();
+            }
+            
+            init() {
+                // Adicionar event listeners
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+                
+                // Adicionar event listeners aos dots
+                this.dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                });
+                
+                // Iniciar autoplay
+                this.startAutoPlay();
+                
+                // Pausar autoplay no hover
+                this.carousel.addEventListener('mouseenter', () => this.stopAutoPlay());
+                this.carousel.addEventListener('mouseleave', () => this.startAutoPlay());
+                
+                // Adicionar navegação por teclado
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.prevSlide();
+                    if (e.key === 'ArrowRight') this.nextSlide();
+                });
+                
+                // Adicionar suporte a touch/swipe
+                this.addTouchSupport();
+                
+                // Atualizar posição inicial
+                this.updateCarousel();
+                
+                console.log('🎠 Carrossel de tecnologias inicializado com sucesso');
+            }
+            
+            updateCarousel() {
+                // Atualizar transform do carrossel
+                const translateX = -this.currentSlide * 100;
+                this.carousel.style.transform = `translateX(${translateX}%)`;
+                
+                // Atualizar indicadores
+                this.dots.forEach((dot, index) => {
+                    if (index === this.currentSlide) {
+                        dot.classList.add('active');
+                        dot.classList.remove('bg-gray-300');
+                        dot.classList.add('bg-indigo-600');
+                    } else {
+                        dot.classList.remove('active');
+                        dot.classList.remove('bg-indigo-600');
+                        dot.classList.add('bg-gray-300');
+                    }
+                });
+                
+                // Adicionar classe de animação
+                this.carousel.classList.add('transition-transform', 'duration-500', 'ease-in-out');
+                
+                // Log da mudança
+                console.log(`🎠 Carrossel movido para slide ${this.currentSlide + 1}`);
+            }
+            
+            nextSlide() {
+                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                this.updateCarousel();
+                this.resetAutoPlay();
+            }
+            
+            prevSlide() {
+                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                this.updateCarousel();
+                this.resetAutoPlay();
+            }
+            
+            goToSlide(slideIndex) {
+                this.currentSlide = slideIndex;
+                this.updateCarousel();
+                this.resetAutoPlay();
+            }
+            
+            startAutoPlay() {
+                if (this.autoPlayInterval) return;
+                
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, this.autoPlayDelay);
+                
+                console.log('▶️ Autoplay do carrossel iniciado');
+            }
+            
+            stopAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                    this.autoPlayInterval = null;
+                    console.log('⏸️ Autoplay do carrossel pausado');
+                }
+            }
+            
+            resetAutoPlay() {
+                this.stopAutoPlay();
+                this.startAutoPlay();
+            }
+            
+            addTouchSupport() {
+                let startX = 0;
+                let endX = 0;
+                let isDragging = false;
+                
+                const handleTouchStart = (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                    this.carousel.style.cursor = 'grabbing';
+                };
+                
+                const handleTouchMove = (e) => {
+                    if (!isDragging) return;
+                    endX = e.touches[0].clientX;
+                };
+                
+                const handleTouchEnd = () => {
+                    if (!isDragging) return;
+                    
+                    const diff = startX - endX;
+                    const threshold = 50; // mínimo de 50px para considerar swipe
+                    
+                    if (Math.abs(diff) > threshold) {
+                        if (diff > 0) {
+                            this.nextSlide(); // swipe para esquerda = próximo slide
+                        } else {
+                            this.prevSlide(); // swipe para direita = slide anterior
+                        }
+                    }
+                    
+                    isDragging = false;
+                    this.carousel.style.cursor = 'grab';
+                };
+                
+                // Eventos para touch
+                this.carousel.addEventListener('touchstart', handleTouchStart, { passive: true });
+                this.carousel.addEventListener('touchmove', handleTouchMove, { passive: true });
+                this.carousel.addEventListener('touchend', handleTouchEnd);
+                
+                // Eventos para mouse (drag)
+                this.carousel.addEventListener('mousedown', handleTouchStart);
+                this.carousel.addEventListener('mousemove', handleTouchMove);
+                this.carousel.addEventListener('mouseup', handleTouchEnd);
+                this.carousel.addEventListener('mouseleave', handleTouchEnd);
+                
+                this.carousel.style.cursor = 'grab';
+            }
+            
+            // Método para destruir o carrossel (se necessário)
+            destroy() {
+                this.stopAutoPlay();
+                this.prevBtn.removeEventListener('click', this.prevSlide);
+                this.nextBtn.removeEventListener('click', this.nextSlide);
+                this.dots.forEach((dot, index) => {
+                    dot.removeEventListener('click', () => this.goToSlide(index));
+                });
+                console.log('🗑️ Carrossel de tecnologias destruído');
+            }
+        }
+        
+        // Inicializar o carrossel quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', () => {
+            // Aguardar um pouco para garantir que todos os elementos estejam carregados
+            setTimeout(() => {
+                if (document.getElementById('logo-carousel')) {
+                    window.techCarousel = new TechCarousel();
+                } else {
+                    console.warn('⚠️ Elemento do carrossel não encontrado');
+                }
+            }, 100);
+        });
+        
+        // Adicionar efeito de parallax na seção de tecnologias
+        window.addEventListener('scroll', () => {
+            const techSection = document.querySelector('section:nth-last-child(2)'); // Seção antes do footer
+            if (techSection) {
+                const rect = techSection.getBoundingClientRect();
+                const speed = 0.5;
+                
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const yPos = -(rect.top * speed);
+                    techSection.style.transform = `translateY(${yPos}px)`;
+                }
+            }
+        });
     </script>
 </body>
 </html>
