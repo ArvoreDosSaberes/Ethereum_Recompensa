@@ -2,8 +2,8 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title RegistroDeUsuariosComRecompensa
- * @author Projeto Capacitação Web3 - Árvore dos Saberes
+ * @title Projeto Capacitação Web3 
+ * @author Carlos Delfino {consultoria@carlosdelfino.eti.br}
  * @notice Contrato para registro de usuarios e distribuição de recompensas em tokens simulados.
  *
  * @dev === CONCEITOS FUNDAMENTAIS ===
